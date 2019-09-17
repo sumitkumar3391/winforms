@@ -22,6 +22,7 @@ namespace WindowsFormsApp4
         public static string email;
         public static int phone;
         public static string search;
+        public static int update;
 
 
 
@@ -82,8 +83,6 @@ namespace WindowsFormsApp4
 
         private  void data1_Click(object sender, EventArgs e)
         {
-            
-            // dataGridView1.DataSource = customerlist1;
             for (int i = 0; i < customerlist1.Count; i++)
             {
                 customer q = customerlist1[i];
@@ -91,8 +90,24 @@ namespace WindowsFormsApp4
                 {
                     MessageBox.Show("data FOund");
                 }
+                else
+                {
+                    MessageBox.Show("data not found");
+                }
             }
+            var obj = from i in customerlist1 where i.Name.Contains(search) select i;
 
+            StringBuilder sb = new StringBuilder();
+            foreach(customer s in obj)
+            {
+                sb.Append(s.Name +":"+s.Email+":"+s.Number+":"+s.position1+ Environment.NewLine);
+            }
+            MessageBox.Show(sb.ToString());
+            
+            // dataGridView1.DataSource = customerlist1;
+            
+            
+           
 
             //Form2 f2 = new Form2();
             //f2.Show();
@@ -119,7 +134,30 @@ namespace WindowsFormsApp4
             dataGridView1.Refresh();
 
         }
+
+        private void txtupdate_TextChanged(object sender, EventArgs e)
+        {
+            update = Convert.ToInt16(txtupdate.Text);
+           
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            foreach (var tom in customerlist1.Where(w => w.Name == search))
+            {
+                tom.Number = update;
+            }
+            StringBuilder sb2 = new StringBuilder();
+            var obj2 = from i in customerlist1 where i.Name.Contains(search) select i;
+            foreach (customer s in obj2)
+            {
+                sb2.Append(s.Name + ":" + s.Email + ":" + s.Number + ":" + s.position1 + Environment.NewLine);
+            }
+            MessageBox.Show(sb2.ToString());
+
+        }
     }
+    
     public class customer
     {
         private string name;
