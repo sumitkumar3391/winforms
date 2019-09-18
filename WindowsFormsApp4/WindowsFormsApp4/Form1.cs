@@ -104,15 +104,7 @@ namespace WindowsFormsApp4
             }
             MessageBox.Show(sb.ToString());
             
-            // dataGridView1.DataSource = customerlist1;
             
-            
-           
-
-            //Form2 f2 = new Form2();
-            //f2.Show();
-            //
-            //dataGridView1.DataSource = customerlist;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
